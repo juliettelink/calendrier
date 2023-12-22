@@ -1,0 +1,39 @@
+@use "../abstracts/_mixins" as mixins
+
+
+.advent
+    height: 100vh 
+    display: grid
+    grid-template-columns: repeat(5, 1fr)
+    grid-template-rows: auto
+    gap: 1rem
+
+    @media (max-width: 768px)
+        grid-template-columns: repeat(3, 1fr)
+
+    &__box
+        @include mixins.flex-center()
+        @for $i from 1 through 24
+            &:nth-child(#{$i})
+                background-image: url("../images/image-#{$i}.svg")
+                background-repeat: no-repeat
+                background-position: center
+                background-size: contain
+
+    &__number
+        height: 100%
+        aspect-ratio: 1/1
+        border-radius: 50% 50% 0 0
+        @include mixins.flex-center()
+        background-color: #6D071A
+        background-size: cover
+        font-family: 'Nabla', serif
+        font-size: 3em
+        transition: opacity 1s ease-in
+
+        @media (max-width: 768px)
+            font-size: 2em
+
+        &.hide
+            opacity: 0
+        
